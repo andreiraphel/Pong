@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends StaticBody2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -8,7 +8,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
-func _draw():
-	draw_rect(Rect2(0, 0, 100, 50), Color(1, 1, 1))
+	if Input.is_action_just_pressed("ui_down"):
+		position += Vector2(0, 1)
