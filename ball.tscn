@@ -5,6 +5,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_woos1"]
 
 [node name="ball" type="RigidBody2D"]
+mass = 0.01
+gravity_scale = 0.0
 script = ExtResource("1_yia2g")
 
 [node name="ColorRect" type="ColorRect" parent="."]

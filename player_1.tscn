@@ -31,12 +31,18 @@ func _process(delta):
 size = Vector2(20, 100)
 
 [node name="Player_1" type="StaticBody2D"]
+position = Vector2(50, 324)
 script = SubResource("GDScript_tkdcc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(10, 50)
+position = Vector2(10, 0)
 shape = SubResource("RectangleShape2D_bjypc")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -50.0
 offset_right = 20.0
-offset_bottom = 100.0
+offset_bottom = 50.0
+grow_vertical = 2
