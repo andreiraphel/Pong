@@ -15,6 +15,3 @@ func _process(delta):
 	
 	position.y = clamp(position.y, 0, viewport_rect.y)
 
-
-func _on_area_2d_body_entered(body):
-	body.direction.x *= -1

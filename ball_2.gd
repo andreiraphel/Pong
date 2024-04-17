@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+var acceleration = 10
 const SPEED = 250
 var direction = Vector2.ZERO
 

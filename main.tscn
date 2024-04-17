@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b61stjkij6qdt"]
+[gd_scene load_steps=11 format=3 uid="uid://b61stjkij6qdt"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_r2c33"]
 [ext_resource type="PackedScene" uid="uid://cbnkgo0y5fbkh" path="res://ball_2.tscn" id="2_nrpu6"]
 [ext_resource type="Script" path="res://Player.gd" id="3_ypvci"]
+[ext_resource type="Script" path="res://CPU.gd" id="4_hnvrw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0c3tg"]
 size = Vector2(164, 648)
@@ -14,6 +15,12 @@ size = Vector2(1152, 96)
 size = Vector2(18, 98)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44q7g"]
+size = Vector2(28, 107)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uiw70"]
+size = Vector2(20, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q383h"]
 size = Vector2(28, 107)
 
 [node name="main" type="Node2D"]
@@ -65,12 +72,39 @@ grow_vertical = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_jjcqo")
 
-[node name="Area2D" type="Area2D" parent="Player"]
+[node name="Player_coll" type="Area2D" parent="Player"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Player_coll"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_44q7g")
 
+[node name="CPU" type="CharacterBody2D" parent="."]
+position = Vector2(1100, 324)
+script = ExtResource("4_hnvrw")
+
+[node name="ColorRect" type="ColorRect" parent="CPU"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -50.0
+offset_right = 10.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CPU"]
+shape = SubResource("RectangleShape2D_uiw70")
+
+[node name="CPU_coll" type="Area2D" parent="CPU"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CPU/CPU_coll"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_q383h")
+
 [connection signal="body_entered" from="Top" to="." method="_on_top_body_entered"]
 [connection signal="body_entered" from="Bottom" to="." method="_on_bottom_body_entered"]
-[connection signal="body_entered" from="Player/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Player/Player_coll" to="." method="_on_player_coll_body_entered"]
+[connection signal="body_entered" from="CPU/CPU_coll" to="." method="_on_cpu_coll_body_entered"]
