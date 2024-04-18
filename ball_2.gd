@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var acceleration = 10
-const SPEED = 250
+var acceleration = 30
+var speed = 250
 var direction = Vector2.ZERO
 
 func _ready():
@@ -10,6 +10,9 @@ func _ready():
 
 func _physics_process(delta):
 	
-	velocity = direction * SPEED
+	velocity = direction * speed
 	
 	move_and_slide()
+
+func add_acceleration():
+	speed += acceleration

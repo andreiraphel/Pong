@@ -14,8 +14,10 @@ func _on_bottom_body_entered(body):
 
 func _on_player_coll_body_entered(body):
 	if body.name == "ball_2":
+		body.add_acceleration()
 		body.direction.x *= -1
 
 func _on_cpu_coll_body_entered(body):
 	if body.name == "ball_2":
+		body.add_acceleration()
 		body.direction.x *= -1
