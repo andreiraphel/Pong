@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b61stjkij6qdt"]
+[gd_scene load_steps=12 format=3 uid="uid://b61stjkij6qdt"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_r2c33"]
 [ext_resource type="PackedScene" uid="uid://cbnkgo0y5fbkh" path="res://ball_2.tscn" id="2_nrpu6"]
 [ext_resource type="Script" path="res://Player.gd" id="3_ypvci"]
 [ext_resource type="Script" path="res://CPU.gd" id="4_hnvrw"]
+[ext_resource type="Script" path="res://HUD.gd" id="5_agdth"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0c3tg"]
 size = Vector2(164, 648)
@@ -104,7 +105,45 @@ shape = SubResource("RectangleShape2D_uiw70")
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_q383h")
 
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("5_agdth")
+
+[node name="score_l" type="Label" parent="HUD"]
+top_level = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -116.0
+offset_top = 23.0
+offset_right = -106.0
+offset_bottom = 46.0
+grow_horizontal = 2
+scale = Vector2(2.365, 2.365)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="score_r" type="Label" parent="HUD"]
+top_level = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 91.0
+offset_top = 23.0
+offset_right = 101.0
+offset_bottom = 46.0
+grow_horizontal = 2
+scale = Vector2(2.365, 2.365)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="score_left" to="." method="_on_score_left_body_entered"]
+[connection signal="body_entered" from="score_right" to="." method="_on_score_right_body_entered"]
 [connection signal="body_entered" from="Top" to="." method="_on_top_body_entered"]
 [connection signal="body_entered" from="Bottom" to="." method="_on_bottom_body_entered"]
 [connection signal="body_entered" from="Player/Player_coll" to="." method="_on_player_coll_body_entered"]
 [connection signal="body_entered" from="CPU/CPU_coll" to="." method="_on_cpu_coll_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
