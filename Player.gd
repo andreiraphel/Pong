@@ -13,3 +13,6 @@ func _process(delta):
 	
 	position.y = clamp(position.y, height.y/2, viewport_rect.y - (height.y/2))
 
+func get_height():
+	var height = $ColorRect.get_size()
+	return height.y
