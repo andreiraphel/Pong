@@ -15,6 +15,7 @@ func _on_bottom_body_entered(body):
 
 func _on_player_coll_body_entered(body):
 	if body.name == "ball_2":
+		var motion_result = test_move(get_position(), Vector2.ZERO)
 		body.add_acceleration()
 		body.direction.x *= -1
 
